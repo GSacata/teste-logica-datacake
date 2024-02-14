@@ -5,11 +5,13 @@ num_array = [2, 1, 5, 2, 5, 2, 1, 1, 1, 7, 9, 13, 127, 21]
 num_one = None
 num_n_one = None
 
-
+def rearrange_item () :
+    print("rearrange_item")
 
 for index, item in enumerate(num_array):
     if item == 1:
         print(index, item) #DEV-ERASE
+        rearrange_item ()
     else:
         continue
 
