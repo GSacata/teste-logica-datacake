@@ -14,9 +14,8 @@ for index_out, item_out in enumerate(num_array):
             if item_in != 1:
                 num_n_one = num_array.pop(index_in)
                 print(num_n_one) #DEV-ERASE
-                # num_array.insert(index_out, num_n_one)    
-                num_array.insert(index_out, num_n_one)
-                num_array.insert(0, num_one)
+                num_array.insert(index_in, num_one)
+                num_array.insert(index_out - 1, num_n_one)
                 num_n_one = None
                 num_one = None
                 break
