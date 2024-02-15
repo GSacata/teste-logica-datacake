@@ -7,7 +7,7 @@
     # se nenhum da lista de pares existir, retorna false
 
 # x = input ("Digite um número inteiro: ")
-x = 22 #DEV-ER
+x = 8 #DEV-ER
 num_list = [1, 15, 2, 7, 2, 5, 7, 1, 4]
 sum_array = []
 
@@ -33,11 +33,16 @@ def create_sum_combo ():
     
     while a < x:
         sum_pair = (a, b)
-        sum_array.append(sum_pair)
-        print(sum_array)
+        invert_sum_pair = (b, a)
+
+        if invert_sum_pair in sum_array:
+            print("pair already exists")
+        else:
+            sum_array.append(sum_pair)
         a += 1
         b -= 1
     
+    print(sum_array)
     print("end create_sum_combo ()")
 
 create_sum_combo ()
