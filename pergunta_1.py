@@ -2,7 +2,7 @@
 # Status: Ongoing
 
 num_array = [2, 1, 5, 2, 5, 2, 1, 1, 1, 7, 9, 13, 127, 21]
-required_number = 2
+required_number = 1
 num_one = None
 num_n_one = None
 
