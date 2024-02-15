@@ -2,16 +2,17 @@
 # Status: Ongoing
 
 num_array = [2, 1, 5, 2, 5, 2, 1, 1, 1, 7, 9, 13, 127, 21]
+required_number = 2
 num_one = None
 num_n_one = None
 
 for index_out, item_out in enumerate(num_array):
-    if item_out == 1:
+    if item_out == required_number:
         print(index_out, item_out) #DEV-ERASE
         num_one = num_array.pop(index_out)
         
         for index_in, item_in in enumerate(num_array):
-            if item_in != 1:
+            if item_in != required_number:
                 num_n_one = num_array.pop(index_in)
                 print(num_n_one) #DEV-ERASE
                 num_array.insert(index_in, num_one)
