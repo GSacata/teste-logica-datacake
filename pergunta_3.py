@@ -46,3 +46,13 @@ def create_sum_combo ():
     print("end create_sum_combo ()")
 
 create_sum_combo ()
+
+def find_sum_combo ():
+    for item in sum_array:
+        print(item) #DEV-ER
+        if item[0] and item[1] in num_list:
+            print(f"combination exist, {item}")
+        else:
+            print(f"{item} combination does not exist")
+
+find_sum_combo ()
