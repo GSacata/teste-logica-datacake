@@ -6,8 +6,12 @@
     # se um ou ambos não existirem, para para o próximo par
     # se nenhum da lista de pares existir, retorna false
 
-x = input ("Digite um número inteiro: ")
+# x = input ("Digite um número inteiro: ")
+x = 22 #DEV-ER
 num_list = [1, 15, 2, 7, 2, 5, 7, 1, 4]
+sum_array = []
+
+# Content: string filter, converting to int and etc.
 
 new_num_list_1 = num_list.copy()
 new_num_list_1.sort()
@@ -23,3 +27,17 @@ else:
     print("x", x)
     print("run search_combinations()")
     
+
+def create_sum_combo ():
+    a, b = 0, x
+    
+    while a < x:
+        sum_pair = (a, b)
+        sum_array.append(sum_pair)
+        print(sum_array)
+        a += 1
+        b -= 1
+    
+    print("end create_sum_combo ()")
+
+create_sum_combo ()
