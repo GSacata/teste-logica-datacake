@@ -1,13 +1,3 @@
-# receber um número, verificar se é um número inteiro
-# faz a soma dos maiores e o crivo
-# criar lógica de somas possíveis
-# comparar partes das somas com os elementos existentes na lista de números
-    # Se ambos existirem na lista, retorna o par e retorna true
-    # se um ou ambos não existirem, para para o próximo par
-    # se nenhum da lista de pares existir, retorna false
-
-# x = input ("Digite um número inteiro: ")
-
 def create_sum_combos (x):
     a, b = 0, x
     
@@ -34,6 +24,13 @@ def append_sum_combo (x):
             pass # combination does not exist
 
 def verify_sum_combos (x):
+    try:
+        x = int(x)
+    except Exception as Error:
+        print(f"invalid {x} input; {Error}")
+        return False
+
+    x = int(x)
     if x > sum_biggest:
         print(f"No combinations available to numbers higher than {sum_biggest}")
         return False
@@ -49,12 +46,11 @@ def verify_sum_combos (x):
     else:
         return False
 
-x = 8 #DEV-ER
+x = input("Type a number to search for a two number sum combination: ")
+
 num_list = [1, 15, 2, 7, 2, 5, 7, 1, 4]
 sum_array = []
 total_sum_combo = []
-
-# Content: string filter, converting to int and etc.
 
 new_num_list_1 = num_list.copy()
 new_num_list_1.sort()
