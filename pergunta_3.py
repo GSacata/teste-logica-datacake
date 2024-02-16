@@ -29,8 +29,7 @@ def create_sum_combo ():
         invert_sum_pair = (b, a)
 
         if invert_sum_pair in sum_array:
-            # pair already exists
-            pass
+            pass # pair already exists
         else:
             sum_array.append(sum_pair)
         a += 1
