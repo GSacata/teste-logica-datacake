@@ -15,10 +15,16 @@ class Node:
         if node_tree is None:
             node_tree = self.__init__(self, node_num)
         else:
-            print("Foi pra outro node")
-            pass
+            print("Vai para outro node")
+
+            if node_num > self.node_value:
+                print("vai para a direita") #DEV-ER
+            else:
+                print("vai para a esquerda") #DEV-ER
+            
 
 root_node = Node(3)
 print(f"root_node: {vars(root_node)}")
 
 root_node.create_node(root_node, 5)
+root_node.create_node(root_node, 2)
