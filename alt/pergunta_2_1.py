@@ -2,9 +2,10 @@
 # Criada para treinar e exercitar árvore binária
 
 
-
+node_tree = None
 root_node = None
-new_node_num = input("create int number node: ")
+# new_node_num = input("create int number node: ") # PROD-UNCOM
+new_node_num = 3 # DEV-ER
 
 class Node:
     def __init__(self, node_value):
@@ -19,7 +20,13 @@ def create_node(node_num):
 
 def append_node():
     print("run append_node()")
-    pass
+    
+    global root_node
+
+    if root_node is None:
+        root_node = created_node
+    else:
+        print("appended in another node")
 
 def erase_created_node():
     global created_node
@@ -32,10 +39,4 @@ append_node()
 erase_created_node()
 
 print(created_node)
-# def search_node():
-
-# n1 = Node(2) #DEV-ER
-# n2 = Node(5) #DEV-ER
-# # print(vars(n1)) #DEV-COM
-
-# print(f'{vars(n1)}\n{vars(n2)}') #DEV-COM
+print(f"root_node: {vars(root_node)}")
