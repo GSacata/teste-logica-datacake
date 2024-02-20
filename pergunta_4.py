@@ -16,7 +16,7 @@ while i < interval_end:
     else:
         missing_num_list.append(i)
         num_list.append(i)
-    
+     # cade a master?
     i += 1
 
 print(f"Results:\nInitial num list: {initial_num_list},\nNumbers missing: {missing_num_list},\nCurrent num list: {num_list} ")
