@@ -1,8 +1,7 @@
 # Pergunta 2.1: código alternativo da Pergunta 2
 # Criada para treinar e exercitar árvore binária
 
-
-print_line = []
+search_track = []
 
 class Node():
     def __init__(self, node_value):
@@ -27,9 +26,32 @@ class Node():
         else:
             self.value = node_value
 
+    def search_number(self, srch_number):
+        
+        if tree is None:
+            print("No tree to search")
+        
+        elif srch_number == self.value:
+            search_track.append(self.value)
+
+        elif srch_number > self.value:
+            search_track.append(self.value)
+            self.right_br.search_number(srch_number)
+        
+        elif srch_number < self.value:
+            search_track.append(self.value)
+            self.left_br.search_number(srch_number)
+        
+
 
 tree = Node(2)
-print(vars(tree))
 
 tree.create_node(3)
 tree.create_node(5)
+tree.create_node(4)
+tree.create_node(7)
+
+tree.search_number(3)
+tree.search_number(4)
+
+print(search_track)
