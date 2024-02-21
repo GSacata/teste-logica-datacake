@@ -8,6 +8,7 @@ class New_Tree():
         self.r_br = None
         self.l_flag = 1
         self.r_flag = 1
+        self.found = 0
         print(vars(self))
     
     def create_branches(self, value_l, value_r):
@@ -24,31 +25,33 @@ class New_Tree():
     def search_tree(self, search_term):
         global path
 
-        print(f"Searching for '{search_term}'...")
+        print(f"Searching for '{search_term}' in {self.value}...")
 
-        if self.value == search_term:
-            path.append(self.value)
-            print(f"Found '{search_term}' at the following path:\n{path}")
-        
-        else:
-            path.append(self.value)
-            print(path) # DEV-ER
+        while self.found == 0:
+            print(self.value)
 
-            if self.l_flag == 1:
-                if self.l_br is None:
-                    self.l_flag -= 1
-                    path.pop()
-                    print(path) # DEV-ER
-                else:
-                    self.l_br.search_tree(search_term)
+            if self.value == search_term:
+                self.found += 1
+                print(f"Found '{search_term}' at the following path:\n{path}")
+                break
             
-            if self.r_flag == 1:
-                if self.r_br is None:
-                    self.r_flag -= 1
-                    path.pop()
-                    print(path) # DEV-ER
+            else:
+
+                if self.l_flag == 1:
+                    if self.l_br.value:
+                        self.l_br.search_tree(search_term)
+                    else:
+                        self.l_flag -= 1
+                
+                elif self.r_flag == 1:
+                    if self.r_br.value:
+                        self.r_br.search_tree(search_term)
+                    else:
+                        self.r_flag -= 1
+                
                 else:
-                    self.r_br.search_tree(search_term)
+                    pass # tanto galhos direito quanto esquerdo já foram buscados e não possuem valores
+
 
 new_tree = New_Tree("Maçã")
 new_tree.create_standard_tree()
