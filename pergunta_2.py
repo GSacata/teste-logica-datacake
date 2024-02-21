@@ -1,66 +1,26 @@
-tree = {
-    "value": "Maçã",
-    "left_br": {
-        "value": "Morango", 
-        "left_br": {
-            "value": "Goiaba", 
-            "left_br": {},
-            "right_br": {}
-        },
-        "right_br": {
-            "value": "Limão", 
-            "left_br": {},
-            "right_br": {}
-        }
-    },
-    "right_br": {
-        "value": "Pera", 
-        "left_br": {},
-        "right_br": {
-            "value": "Abacaxi", 
-            "left_br": {},
-            "right_br": {
-                "value": "Laranja", 
-                "left_br": {
-                    "value": "Banana", 
-                    "left_br": {},
-                    "right_br": {}
-                },
-                "right_br": {
-                    "value": "Cebola", 
-                    "left_br": {},
-                    "right_br": {}
-                }
-            }
-        }
-    }
-}
-
-text_input = input("What word to find? ")
-
-def format_input():
-    print("Formatting the input...")
-
-def search_tree():
-    print("Searching the tree...")
-
-
-test_obj = {
-    "value": "", 
-    "l_br": {},
-    "l_flag": 1,
-    "r_br": {},
-    "r_flag": 1
-    }
-
-class Tree():
-    def __init__(self, tree):
-        self.tree = tree
+class New_Tree():
+    def __init__(self, value):
+        self.value = value
+        self.l_br = None
+        self.r_br = None
+        self.l_flag = 1
+        self.r_flag = 1
+        print(vars(self))
     
-    def hello_tree(self):
-        print("Hello to the trees of the world")
+    def create_branches(self, value_l, value_r):
+        self.l_br = New_Tree(value_l)
+        self.r_br = New_Tree(value_r)
+    
+    def create_standard_tree(self):
+        self.create_branches("Morango", "Pera")
+        self.l_br.create_branches("Goiaba", "Limão")
+        self.r_br.create_branches("", "Abacaxi")
+        self.r_br.r_br.create_branches("", "Laranja")
+        self.r_br.r_br.r_br.create_branches("Banana", "Cebola")
 
-new_tree = Tree(tree)
-
-print(vars(new_tree))
-new_tree.hello_tree()
+new_tree = New_Tree("Maçã")
+new_tree.create_standard_tree()
+# print(vars(new_tree.l_br.l_br))
+# print(vars(new_tree.r_br.l_br))
+# print(vars(new_tree.r_br.r_br.r_br))
+# print(vars(new_tree.r_br.r_br.r_br.l_br))
