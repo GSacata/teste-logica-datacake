@@ -28,35 +28,40 @@ class New_Tree():
         print(f"Searching for '{search_term}' in {self.value}...")
 
         while self.found == 0:
-            print(self.value)
 
             if self.value == search_term:
                 self.found += 1
                 print(f"Found '{search_term}' at the following path:\n{path}")
-                break
             
             else:
 
                 if self.l_flag == 1:
-                    if self.l_br.value:
-                        self.l_br.search_tree(search_term)
-                    else:
+                    if self.l_br is None or self.value == '':
                         self.l_flag -= 1
-                
-                elif self.r_flag == 1:
-                    if self.r_br.value:
-                        self.r_br.search_tree(search_term)
+                        continue
                     else:
+                        self.l_br.search_tree(search_term)
+                
+                if self.r_flag == 1:
+                    if self.r_br is None or self.value == '':
                         self.r_flag -= 1
+                        continue
+                    else:
+                        self.r_br.search_tree(search_term)
                 
                 else:
                     pass # tanto galhos direito quanto esquerdo já foram buscados e não possuem valores
+                    # por obséquio, não usar continue aqui
+            
+            break
+
 
 
 new_tree = New_Tree("Maçã")
 new_tree.create_standard_tree()
 
-new_tree.search_tree("Goiaba")
+new_tree.search_tree("Cebola")
 
+print("code ended")
 
 # Mais para frente: criar um método que permite escrever a árvore (ex.: escreva o valor desse node, do galho esquerdo e do galho direito. Qual galho você quer ir? Escreva o valor blablabla...).
