@@ -1,4 +1,4 @@
-path = []
+tree_path = []
 
 class New_Tree():
     
@@ -9,7 +9,7 @@ class New_Tree():
         self.l_flag = 1
         self.r_flag = 1
         self.found = 0
-        print(vars(self))
+        # print(vars(self)) #DEV-ER
     
     def create_branches(self, value_l, value_r):
         self.l_br = New_Tree(value_l)
@@ -23,7 +23,7 @@ class New_Tree():
         self.r_br.r_br.r_br.create_branches("Banana", "Cebola")
     
     def search_tree(self, search_term):
-        global path
+        global tree_path
 
         print(f"Searching for '{search_term}' in {self.value}...")
 
@@ -31,7 +31,7 @@ class New_Tree():
 
             if self.value == search_term:
                 self.found += 1
-                print(f"Found '{search_term}' at the following path:\n{path}")
+                print(f"Found '{search_term}' at the following tree path:\n{tree_path}")
             
             else:
 
@@ -60,7 +60,7 @@ class New_Tree():
 new_tree = New_Tree("Maçã")
 new_tree.create_standard_tree()
 
-new_tree.search_tree("Cebola")
+new_tree.search_tree("Goiaba")
 
 print("code ended")
 
