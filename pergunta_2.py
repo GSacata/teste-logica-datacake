@@ -1,4 +1,7 @@
+path = []
+
 class New_Tree():
+    
     def __init__(self, value):
         self.value = value
         self.l_br = None
@@ -17,10 +20,40 @@ class New_Tree():
         self.r_br.create_branches("", "Abacaxi")
         self.r_br.r_br.create_branches("", "Laranja")
         self.r_br.r_br.r_br.create_branches("Banana", "Cebola")
+    
+    def search_tree(self, search_term):
+        global path
+
+        print(f"Searching for '{search_term}'...")
+
+        if self.value == search_term:
+            path.append(self.value)
+            print(f"Found '{search_term}' at the following path:\n{path}")
+        
+        else:
+            path.append(self.value)
+            print(path) # DEV-ER
+
+            if self.l_flag == 1:
+                if self.l_br is None:
+                    self.l_flag -= 1
+                    path.pop()
+                    print(path) # DEV-ER
+                else:
+                    self.l_br.search_tree(search_term)
+            
+            if self.r_flag == 1:
+                if self.r_br is None:
+                    self.r_flag -= 1
+                    path.pop()
+                    print(path) # DEV-ER
+                else:
+                    self.r_br.search_tree(search_term)
 
 new_tree = New_Tree("Maçã")
 new_tree.create_standard_tree()
-# print(vars(new_tree.l_br.l_br))
-# print(vars(new_tree.r_br.l_br))
-# print(vars(new_tree.r_br.r_br.r_br))
-# print(vars(new_tree.r_br.r_br.r_br.l_br))
+
+new_tree.search_tree("Goiaba")
+
+
+# Mais para frente: criar um método que permite escrever a árvore (ex.: escreva o valor desse node, do galho esquerdo e do galho direito. Qual galho você quer ir? Escreva o valor blablabla...).
