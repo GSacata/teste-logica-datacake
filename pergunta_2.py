@@ -1,3 +1,7 @@
+tree_path = []
+found_in_tree = 0
+vars_cleared = True
+
 class New_Tree():
     
     def __init__(self, value):
@@ -19,8 +23,11 @@ class New_Tree():
         self.r_br.r_br.r_br.create_branches("Banana", "Cebola")
     
     def search_tree(self, search_term):
-        tree_path = []
-        found_in_tree = 0
+        global tree_path, found_in_tree, vars_cleared
+
+        if vars_cleared is False:
+            tree_path = []
+            found_in_tree = 0
 
         print(f"Searching for '{search_term}' in {self.value}...")
 
@@ -29,8 +36,10 @@ class New_Tree():
             if self.value == search_term:
                 found_in_tree += 1
                 print(f"Found '{search_term}' at the following tree path:\n{tree_path}")
+                vars_cleared = False
             
             else:
+                tree_path.append(self.value)
 
                 if self.l_flag == 1 and found_in_tree == 0:
                     if self.l_br is None or self.value == '':
@@ -51,6 +60,11 @@ class New_Tree():
                     # por obséquio, não usar continue aqui
             
             break
+    
+    def clear_search_var(self):
+        global tree_path, found_in_tree
+        tree_path = []
+        found_in_tree = 0
 
 
 
