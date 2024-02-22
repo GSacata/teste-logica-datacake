@@ -61,6 +61,10 @@ new_tree = New_Tree("Maçã")
 new_tree.create_standard_tree()
 
 new_tree.search_tree("Goiaba")
+new_tree.search_tree("Limão")
+new_tree.search_tree("Banana")
+new_tree.search_tree("Cebola")
+new_tree.search_tree("Pera")
 
 print("code ended")
 
