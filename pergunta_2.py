@@ -1,4 +1,5 @@
 tree_path = []
+found_in_tree = 0
 
 class New_Tree():
     
@@ -8,7 +9,7 @@ class New_Tree():
         self.r_br = None
         self.l_flag = 1
         self.r_flag = 1
-        self.found = 0
+        # self.found = 0
         # print(vars(self)) #DEV-ER
     
     def create_branches(self, value_l, value_r):
@@ -23,26 +24,30 @@ class New_Tree():
         self.r_br.r_br.r_br.create_branches("Banana", "Cebola")
     
     def search_tree(self, search_term):
-        global tree_path
+        global tree_path, found_in_tree
+
+        tree_path = []
+        found_in_tree = 0
 
         print(f"Searching for '{search_term}' in {self.value}...")
 
-        while self.found == 0:
+        while found_in_tree == 0:
 
             if self.value == search_term:
-                self.found += 1
+                found_in_tree += 1
                 print(f"Found '{search_term}' at the following tree path:\n{tree_path}")
+                # break
             
             else:
 
-                if self.l_flag == 1:
+                if self.l_flag == 1 and found_in_tree == 0:
                     if self.l_br is None or self.value == '':
                         self.l_flag -= 1
                         continue
                     else:
                         self.l_br.search_tree(search_term)
                 
-                if self.r_flag == 1:
+                if self.r_flag == 1 and found_in_tree == 0:
                     if self.r_br is None or self.value == '':
                         self.r_flag -= 1
                         continue
@@ -68,4 +73,5 @@ new_tree.search_tree("Pera")
 
 print("code ended")
 
-# Mais para frente: criar um método que permite escrever a árvore (ex.: escreva o valor desse node, do galho esquerdo e do galho direito. Qual galho você quer ir? Escreva o valor blablabla...).
+# planned update: criar um método que permite escrever a árvore (ex.: escreva o valor desse node, do galho esquerdo e do galho direito. Qual galho você quer ir? Escreva o valor blablabla...).
+# planned update: o programa não para na primeira rota em que encontra o termo, ele continua rodando e entrega todas as rotas existentes com o termo buscado
