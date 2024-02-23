@@ -10,6 +10,7 @@ class New_Tree():
         self.r_br = None
         self.l_flag = 1
         self.r_flag = 1
+        self.appended = False
     
     def create_branches(self, value_l, value_r):
         self.l_br = New_Tree(value_l)
@@ -28,54 +29,58 @@ class New_Tree():
         if vars_cleared is False:
             tree_path = []
             found_in_tree = 0
+            vars_cleared = True
 
         print(f"Searching for '{search_term}' in {self.value}...")
 
         while found_in_tree == 0:
 
+            # if self.l_flag == 0 and self.r_flag == 0:
+            #     tree_path.remove(self.value)
+
             if self.value == search_term:
+                tree_path.append(self.value)
                 found_in_tree += 1
                 print(f"Found '{search_term}' at the following tree path:\n{tree_path}")
                 vars_cleared = False
             
             else:
-                tree_path.append(self.value)
-
+                
                 if self.l_flag == 1 and found_in_tree == 0:
                     if self.l_br is None or self.value == '':
                         self.l_flag -= 1
                         continue
                     else:
+                        # if self.appended == False:
+                        #     tree_path.append(self.value)
+                        #     self.appended = True
                         self.l_br.search_tree(search_term)
                 
-                if self.r_flag == 1 and found_in_tree == 0:
+                if self.r_flag == 1 and found_in_tree == 0: # Aqui if não pode ser trocado por elif, pois com if, ao voltar do break, ele buscará no r_br do node anterior a este
                     if self.r_br is None or self.value == '':
                         self.r_flag -= 1
                         continue
                     else:
+                        # if self.appended == False:
+                        #     tree_path.append(self.value)
+                        #     self.appended = True
                         self.r_br.search_tree(search_term)
-                
+
                 else:
+                    # tree_path.remove(self.value)
                     pass # tanto galhos direito quanto esquerdo já foram buscados e não possuem valores
                     # por obséquio, não usar continue aqui
             
             break
-    
-    def clear_search_var(self):
-        global tree_path, found_in_tree
-        tree_path = []
-        found_in_tree = 0
-
-
 
 new_tree = New_Tree("Maçã")
 new_tree.create_standard_tree()
 
-new_tree.search_tree("Goiaba")
-new_tree.search_tree("Limão")
+# new_tree.search_tree("Goiaba")
+# new_tree.search_tree("Limão")
 new_tree.search_tree("Banana")
-new_tree.search_tree("Cebola")
-new_tree.search_tree("Pera")
+# new_tree.search_tree("Cebola")
+# new_tree.search_tree("Pera")
 
 print("code ended")
 
