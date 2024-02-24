@@ -1,6 +1,5 @@
 tree_path = []
 found_in_tree = 0
-vars_cleared = True
 
 class New_Tree():
     
@@ -10,6 +9,7 @@ class New_Tree():
         self.r_br = None
         self.l_flag = 1
         self.r_flag = 1
+        self.searched_in: False
     
     def create_branches(self, value_l, value_r):
         self.l_br = New_Tree(value_l)
@@ -46,7 +46,6 @@ class New_Tree():
             if self.value == search_term:
                 found_in_tree += 1
                 print(f"Found '{search_term}' at the following tree path:\n{tree_path}")
-                vars_cleared = False
             
             else:
 
@@ -68,6 +67,7 @@ class New_Tree():
                         self.write_tree_path(self.value)
 
                 else:
+                    self.searched_in = True
                     pass # tanto galhos direito quanto esquerdo já foram buscados e não possuem valores
                     # por obséquio, não usar continue aqui
             
@@ -79,6 +79,9 @@ new_tree.create_standard_tree()
 
 search_term = input("What word to find? ")
 new_tree.search_tree(search_term)
+
+if tree_path == []:
+    print(f"No path found for '{search_term}'")
 
 
 print("code ended")
