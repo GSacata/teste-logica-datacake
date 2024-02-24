@@ -17,6 +17,7 @@ class New_Tree():
     
     def __init__(self, value):
         self.value = value
+        self.encoded_value = word_formatter(self.value)
         self.l_br = None
         self.r_br = None
         self.l_flag = 1
@@ -47,21 +48,22 @@ class New_Tree():
     
 
     def search_tree(self, search_term):
+        encoded_search_term = word_formatter(search_term)
         global tree_path, found_in_tree, vars_cleared
-            
+        
         print(f"Searching for '{search_term}' in {self.value}...")
 
         while found_in_tree == 0:
             self.write_tree_path(self.value)
 
-            if self.value == search_term:
+            if self.encoded_value == encoded_search_term:
                 found_in_tree += 1
                 print(f"Found '{search_term}' at the following tree path:\n{tree_path}")
             
             else:
 
                 if self.l_flag == 1 and found_in_tree == 0:
-                    if self.l_br is None or self.value == '':
+                    if self.l_br is None or self.encoded_value == '':
                         self.l_flag -= 1
                         continue
                     else:
@@ -69,7 +71,7 @@ class New_Tree():
                         self.l_br.search_tree(search_term)
                 
                 if self.r_flag == 1 and found_in_tree == 0: # Aqui if não pode ser trocado por elif, pois com if, ao voltar do break, ele buscará no r_br do node anterior a este
-                    if self.r_br is None or self.value == '':
+                    if self.r_br is None or self.encoded_value == '':
                         self.r_flag -= 1
                         continue
                     else:
@@ -91,16 +93,13 @@ new_tree.create_standard_tree()
 search_term = input("What word to find? ")
 if search_term == "":
     print(f"Empty input\nSearching 'Goiaba' as example")
-    # new_tree.search_tree("Goiaba")
+    new_tree.search_tree("Goiaba")
 else:
-    # new_tree.search_tree(search_term)
-    search_term = word_formatter(search_term)
-    pass # DEV ER
+    new_tree.search_tree(search_term)
 
-# if tree_path == []:
-#     print(f"No path found for '{search_term}'")
+if tree_path == []:
+    print(f"No path found for '{search_term}'")
 
-print(search_term)
 print("End")
 
 # planned update: criar um método que permite escrever a árvore (ex.: escreva o valor desse node, do galho esquerdo e do galho direito. Qual galho você quer ir? Escreva o valor blablabla...).
