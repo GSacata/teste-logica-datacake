@@ -1,3 +1,15 @@
+# example word:   #olha1Goiaba-maçaroca $
+import unicodedata
+import re
+
+def word_formatter(word_input):
+    word_input = word_input.strip() # tira espaços na frente e no fim da string
+    word_input = word_input.casefold() # deixa tudo minúsculo
+    word_input = unicodedata.normalize("NFD", word_input) # substitui letras acentuadas por não acentuadas
+    word_input = re.sub('[^A-Za-z0-9]+', '', word_input) # tira tudo que não for letra e número
+    # print(f"final input: {word_input}")
+    return word_input
+
 tree_path = []
 found_in_tree = 0
 
@@ -79,13 +91,16 @@ new_tree.create_standard_tree()
 search_term = input("What word to find? ")
 if search_term == "":
     print(f"Empty input\nSearching 'Goiaba' as example")
-    new_tree.search_tree("Goiaba")
+    # new_tree.search_tree("Goiaba")
 else:
-    new_tree.search_tree(search_term)
+    # new_tree.search_tree(search_term)
+    search_term = word_formatter(search_term)
+    pass # DEV ER
 
-if tree_path == []:
-    print(f"No path found for '{search_term}'")
+# if tree_path == []:
+#     print(f"No path found for '{search_term}'")
 
+print(search_term)
 print("End")
 
 # planned update: criar um método que permite escrever a árvore (ex.: escreva o valor desse node, do galho esquerdo e do galho direito. Qual galho você quer ir? Escreva o valor blablabla...).
