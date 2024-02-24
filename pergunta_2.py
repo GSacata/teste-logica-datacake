@@ -10,7 +10,8 @@ def word_formatter(word_input):
     # print(f"final input: {word_input}")
     return word_input
 
-tree_path = []
+tree_path = ""
+tree_path_list = []
 found_in_tree = 0
 
 class New_Tree():
@@ -22,7 +23,7 @@ class New_Tree():
         self.r_br = None
         self.l_flag = 1
         self.r_flag = 1
-        self.searched_in: False
+        # self.searched_in: False
     
     def create_branches(self, value_l, value_r):
         self.l_br = New_Tree(value_l)
@@ -35,29 +36,31 @@ class New_Tree():
         self.r_br.r_br.create_branches("", "Laranja")
         self.r_br.r_br.r_br.create_branches("Banana", "Cebola")
     
-    def write_tree_path(self, node_value):
-        if tree_path.count(node_value) == 0:
-            tree_path.append(node_value)
-        elif tree_path.count(node_value) == 1:
+    def write_tree_path_list(self, node_value):
+        if tree_path_list.count(node_value) == 0:
+            tree_path_list.append(node_value)
+        elif tree_path_list.count(node_value) == 1:
             if self.l_flag == 0 and self.r_flag == 0:
-                tree_path.remove(node_value)
+                tree_path_list.remove(node_value)
             else:
                 pass
-        elif tree_path.count(node_value) >= 2:
-            tree_path.remove(node_value)
-    
+        elif tree_path_list.count(node_value) >= 2:
+            tree_path_list.remove(node_value)
+
 
     def search_tree(self, search_term):
         encoded_search_term = word_formatter(search_term)
-        global tree_path, found_in_tree, vars_cleared
+        global tree_path, tree_path_list, found_in_tree
         
         print(f"Searching for '{search_term}' in {self.value}...")
 
         while found_in_tree == 0:
-            self.write_tree_path(self.value)
+            self.write_tree_path_list(self.value)
 
             if self.encoded_value == encoded_search_term:
                 found_in_tree += 1
+                tree_path = " -> ".join(tree_path_list)
+                # print(f"Tree path list: '{tree_path_list}'\nFound '{search_term}' at the following tree path:\n{tree_path}")
                 print(f"Found '{search_term}' at the following tree path:\n{tree_path}")
             
             else:
@@ -77,10 +80,10 @@ class New_Tree():
                     else:
                         self.r_flag -= 1
                         self.r_br.search_tree(search_term)
-                        self.write_tree_path(self.value)
+                        self.write_tree_path_list(self.value)
 
                 else:
-                    self.searched_in = True
+                    # self.searched_in = True
                     pass # tanto galhos direito quanto esquerdo já foram buscados e não possuem valores
                     # por obséquio, não usar continue aqui
             
@@ -97,7 +100,7 @@ if search_term == "":
 else:
     new_tree.search_tree(search_term)
 
-if tree_path == []:
+if tree_path == "":
     print(f"No path found for '{search_term}'")
 
 print("End")
