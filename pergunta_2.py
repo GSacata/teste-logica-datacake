@@ -37,7 +37,6 @@ class New_Tree():
     def search_tree(self, search_term):
         global tree_path, found_in_tree, vars_cleared
             
-
         print(f"Searching for '{search_term}' in {self.value}...")
 
         while found_in_tree == 0:
@@ -78,13 +77,16 @@ new_tree = New_Tree("Maçã")
 new_tree.create_standard_tree()
 
 search_term = input("What word to find? ")
-new_tree.search_tree(search_term)
+if search_term == "":
+    print(f"Empty input\nSearching 'Goiaba' as example")
+    new_tree.search_tree("Goiaba")
+else:
+    new_tree.search_tree(search_term)
 
 if tree_path == []:
     print(f"No path found for '{search_term}'")
 
-
-print("code ended")
+print("End")
 
 # planned update: criar um método que permite escrever a árvore (ex.: escreva o valor desse node, do galho esquerdo e do galho direito. Qual galho você quer ir? Escreva o valor blablabla...).
 # planned update: o programa não para na primeira rota em que encontra o termo, ele continua rodando e entrega todas as rotas existentes com o termo buscado
