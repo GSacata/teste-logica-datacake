@@ -1,20 +1,28 @@
 # v.0.0.0, 14/02/2024
-# Status: Ongoing
+# Status: Done
 
 num_array = [2, 1, 5, 2, 5, 2, 1, 1, 1, 7, 9, 13, 127, 21]
 required_number = 1
 num_one = None
 num_n_one = None
 
+def enum_list(list):
+    print(f"list: {list}")
+    for index, item in enumerate(list):
+        print(f"index: {index}, item: {item}")
+
+enum_list(num_array)
+
+# new_num_array = sorted(num_array) # trouxe os 1 para frente, mas muda o index
+# enum_list(new_num_array)
+
 for index_out, item_out in enumerate(num_array):
     if item_out == required_number:
-        print(index_out, item_out) #DEV-ERASE
         num_one = num_array.pop(index_out)
         
         for index_in, item_in in enumerate(num_array):
             if item_in != required_number:
                 num_n_one = num_array.pop(index_in)
-                print(num_n_one) #DEV-ERASE
                 num_array.insert(index_in, num_one)
                 num_array.insert(index_out - 1, num_n_one)
                 num_n_one = None
@@ -23,7 +31,6 @@ for index_out, item_out in enumerate(num_array):
     else:
         continue
 
-print(num_array)
+enum_list(num_array)
 
-print("fim") #DEV-ERASE
 
